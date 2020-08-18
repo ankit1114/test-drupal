@@ -1,0 +1,30 @@
+<div class="clearfix">
+	<section class="page-header">
+		<div class="container">
+			<div class="ph-row">
+				<h3>{{ content.field_landing_page_title }}</h3>
+				{{ content.body }}
+			</div>
+		</div>
+	</section>
+</div>
+{% if content.field_left_image or content.field_right_image %}
+  <div class="clearfix">
+			<div class="charity-row">
+				{% if content.field_left_image %}
+					<div class="charity-col charity-img">
+						<figure>
+							{{ content.field_left_image }}
+						</figure>
+					</div>
+				{% endif %}
+				{% if content.field_right_image %}
+					<div class="charity-col charity-img">
+						<figure>
+							{{ content.field_right_image }}
+						</figure>
+					</div>
+				{% endif %}
+			</div>
+	</div>
+{% endif %}

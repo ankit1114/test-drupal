@@ -1,0 +1,123 @@
+<?php
+use Drupal\file\Entity\File; 
+use Drupal\core\Url;
+use Drupal\taxonomy\Entity\Term;
+
+/*
+ * Implements hook_preprocess_page().
+ *
+ */
+
+function moorlands_preprocess_page(&$variables) {
+ 
+  $site_config = \Drupal::config('system.site');
+  // logo needs to be placed within specified folder
+  
+  $variables['logopath'] = file_url_transform_relative(file_create_url(theme_get_setting('logo.url')));
+
+	global $base_url; 
+  $fid = theme_get_setting('moorlands_footer_logo'); 
+
+  if(!empty($fid)){ 
+    $file = File::load($fid[0]); 
+    
+   } 
+   if(!empty($file)) { 
+    $variables['moorlands_footer_logo_url'] = $file->url();
+   } 
+   else { 
+    $variables['moorlands_footer_logo_url'] = $base_url . '/' . \Drupal::theme()->getActiveTheme()->getPath() . '/images/footer-logo.png'; 
+   } 
+  $variables['moorlands_footer_logo'] = theme_get_setting('moorlands_footer_logo');
+	$variables['moorlands_address'] = theme_get_setting('moorlands_address');
+  $variables['moorlands_dribbble_link'] = theme_get_setting('moorlands_dribbble_link');
+  $variables['moorlands_facebook_link'] = theme_get_setting('moorlands_facebook_link');
+  $variables['moorlands_twitter_link'] = theme_get_setting('moorlands_twitter_link');
+  $variables['moorlands_apple_link'] = theme_get_setting('moorlands_apple_link');
+  $variables['moorlands_contact_number'] = theme_get_setting('moorlands_contact_number');
+  $variables['moorlands_get_in_touch'] = theme_get_setting('moorlands_get_in_touch');
+  $variables['moorlands_email_address'] = theme_get_setting('moorlands_email_address');
+  $variables['moorlands_lattitude'] = theme_get_setting('moorlands_lattitude');
+  $variables['moorlands_longitude'] = theme_get_setting('moorlands_longitude');
+
+}
+
+/*
+ *
+ * Implement hook_preprocess_views_view_fields()
+ */
+function moorlands_preprocess_views_view_fields(&$variables) {
+  $themePath = drupal_get_path('theme', 'moorlands');
+  $variables['directory'] = $themePath;
+  $query = \Drupal::request()->query->get('field_category_target_id');
+  if ($query) {
+    $variables['field_category_target_id'] = $query;
+    $variables['#cache']['max-age'] = 0;
+  }
+}
+
+/*
+ *
+ * Implement hook_preprocess_views_view_unformatted()
+ */
+
+function moorlands_preprocess_views_view_unformatted(&$variables) {
+  $fid = theme_get_setting('moorlands_contact_form_background_image');
+  if ($fid) {
+    $file = File::load($fid[0]);
+    $fileUri = $file->getFileUri();
+    $fileUrl =  file_create_url($fileUri);
+    $variables['contact_background_image_path'] = $fileUrl;
+  }
+  
+  $field_category_target_id = \Drupal::request()->get('field_category_target_id');
+  if ($field_category_target_id) {
+    $term = Term::load($field_category_target_id);
+    $variables['news_cat_name'] = $term->getName();
+  } else {
+    $variables['news_cat_name'] = 'All';
+  }
+  
+}
+
+/*
+ *
+ * Implement hook_preprocess_html()
+ */
+
+function moorlands_preprocess_html(&$variables) {
+  $isFront = \Drupal::service('path.matcher')->isFrontPage();
+  if(!$isFront) {
+    $variables['attributes']['class'][] = 'inner-page';
+  } 
+}
+
+/*
+ *
+ * Implement hook_preprocess_node()
+ */
+function moorlands_preprocess_node(&$variables) {
+ $type = $variables['node']->bundle();
+  if (isset($type) && $type == 'news' ) {
+    $block = \Drupal\block\Entity\Block::load('views_block__news_block_3');
+    $variables['related_news_block'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+
+    $block1 = \Drupal\block\Entity\Block::load('views_block__news_categories_block_2');
+    $variables['news_category_block'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block1);
+  }
+}
+
+/*
+ *
+ * Implement hook_preprocess_webform()
+ */
+
+function moorlands_preprocess_webform(&$variables) {
+  $variables['moorlands_address'] = theme_get_setting('moorlands_address');
+  $variables['moorlands_contact_number'] = theme_get_setting('moorlands_contact_number');
+  $variables['moorlands_email_address'] = theme_get_setting('moorlands_email_address');
+}

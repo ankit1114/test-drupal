@@ -1,0 +1,18 @@
+<div class="clearfix">
+	<section class="contact-page">
+		<div class="contact-image">
+			<img src="{{ contact_background_image_path }}" alt="">
+		</div>
+		<div class="contact-address">
+			<div class="container">
+				<article>
+					<ul>
+						{% for row in rows %}
+							<li>{{ row }}</li>
+						{% endfor %}
+					</ul>
+				</article>
+			</div>
+		</div>
+	</section>
+</div>

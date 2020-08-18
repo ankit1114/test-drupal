@@ -1,0 +1,12 @@
+global-styling:
+  css:
+    theme:
+      https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css: {type: external}
+      css/bootstrap.min.css: {}
+      css/style.css: {}
+      css/responsive.css: {}
+
+  js:
+    js/bootstrap.min.js: {}    
+    js/main.js: {}
+    

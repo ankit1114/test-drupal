@@ -1,0 +1,33 @@
+{% if row.index is even %}	
+	<div class="charity-col charity-img">
+		<figure>
+			{{ fields.field_charity_image.content }}
+		</figure>
+	</div>
+	<div class="charity-col charity-article">
+		<article>
+			<h6>{{ fields.field_charity_title.content }}</h6>
+			{{ fields.body.content }}
+			<a href="{{ fields.view_node.content }}" class="button">Find out more</a>
+			{% if fields.edit_node.content %}
+				<a href="{{ fields.edit_node.content }}" class="button">Edit</a>
+			{% endif %}
+		</article>
+	</div>	
+{% else %}
+	<div class="charity-col charity-article">
+		<article>
+			<h6>{{ fields.field_charity_title.content }}</h6>
+			{{ fields.body.content }}
+			<a href="{{ fields.view_node.content }}" class="button">Find out more</a>
+			{% if fields.edit_node.content %}
+				<a href="{{ fields.edit_node.content }}" class="button">Edit</a>
+ 			{% endif %}		
+		</article>
+	</div>
+	<div class="charity-col charity-img">
+		<figure>
+			{{ fields.field_charity_image.content }}
+		</figure>
+	</div>
+{% endif %}

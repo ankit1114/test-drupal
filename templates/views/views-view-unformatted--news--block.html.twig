@@ -1,0 +1,16 @@
+<div class="clearfix">
+	<section class="news-section">
+		<div class="container">
+			<div class="news-heading">
+				<h3>{{ news_cat_name }}</h3>
+			</div>
+			<div class="news-row">
+				{% for row in rows %}
+				  <div class="news-col">
+				  	{{ row }}
+				  </div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+</div>

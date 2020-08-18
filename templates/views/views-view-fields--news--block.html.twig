@@ -1,0 +1,13 @@
+<div class="news-inner">
+	<figure>
+		{{ fields.field_news_image.content }}
+	</figure>
+	<article>
+		<h3><a href="{{ fields.view_node.content}}">{{ fields.field_news_title.content }}</a></h3>
+		{{ fields.body.content }}
+		<a href="{{ fields.view_node.content}}" class="button">Find out more</a>
+		{% if fields.edit_node.content %}
+			<a href="{{ fields.edit_node.content }}" class="button">Edit</a>
+		{% endif %}
+	</article>
+</div>	

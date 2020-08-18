@@ -1,0 +1,14 @@
+name: Moorlands
+description: Moorlands Financial Plan
+type: theme
+core: 8.x 
+
+regions:
+  header: Header
+  content: Content
+  get_in_touch: Get In Touch
+  contact: Contact
+  footer: Footer
+  
+libraries: 
+  - moorlands/global-styling

@@ -1,0 +1,13 @@
+<div class="clearfix">
+	<section class="testimonial">
+		{% for key, row in rows %}
+			{% if (key % 2) == 0 %}
+		  	<div class="testimonial-row">
+		  {% endif %}
+			    {{ row }}
+			{% if (key % 2) == 1 or (key - 1) == rows|length  %}
+		    </div>
+		  {% endif %}
+	  {% endfor %}
+	</section>
+</div>

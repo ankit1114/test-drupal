@@ -1,0 +1,27 @@
+{% if row.index is even %}
+	<div class="os-col os-article">
+		<article>
+			<h6>{{ fields.title.content }}</h6>
+			{{ fields.body.content }}
+			{% if fields.edit_node.content %}
+				<a href="{{ fields.edit_node.content }}" class="button">Edit</a>
+			{% endif %}
+		</article>
+	</div>
+	<div class="os-col os-img">
+		{{ fields.field_services_image.content }}
+	</div>
+{% else %}
+	<div class="os-col os-img">
+		{{ fields.field_services_image.content }}
+	</div>
+	<div class="os-col os-article">
+		<article>
+			<h6>{{ fields.title.content }}</h6>
+			{{ fields.body.content }}
+			{% if fields.edit_node.content %}
+				<a href="{{ fields.edit_node.content }}" class="button">Edit</a>
+			{% endif %}
+		</article>
+	</div>
+{% endif %}			

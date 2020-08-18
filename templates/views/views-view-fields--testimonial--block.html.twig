@@ -1,0 +1,35 @@
+{% if row.index is even %}
+  <div class="testimonial-col odd">
+		<article>
+			<div>
+				{% if fields.field_testimonial_title.content and fields.body.content %}
+					<h6>{{ fields.field_testimonial_title.content }}</h6>
+					{{ fields.body.content }}
+					{% if fields.edit_node.content %}
+						<a href="{{ fields.edit_node.content }}" class="button">Edit</a>
+					{% endif %}
+				{% endif %}
+			</div>
+		</article>
+		{% if fields.field_testimonial_image.content%}
+		  <figure>{{ fields.field_testimonial_image.content }}</figure>
+		{% endif %}
+	</div>
+{% else %}	
+  <div class="testimonial-col even">
+  	{% if fields.field_testimonial_image.content%}
+		  <figure>{{ fields.field_testimonial_image.content }}</figure>
+		{% endif %}
+		<article>
+			<div>
+				{% if fields.field_testimonial_title.content and fields.body.content %}
+					<h6>{{ fields.field_testimonial_title.content }}</h6>
+					{{ fields.body.content }}
+					{% if fields.edit_node.content %}
+			    	<a href="{{ fields.edit_node.content }}" class="button">Edit</a>
+					{% endif %}
+				{% endif %}
+			</div>
+		</article>
+	</div>
+{% endif %}

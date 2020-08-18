@@ -1,0 +1,15 @@
+<div class="clearfix">
+	<section class="charity">
+		{% for row in rows %}
+		  {% if loop.index is odd %}
+			  <div class="charity-row odd">	
+		      {{ row }}
+		    </div>
+		  {% else %}
+		  	<div class="charity-row even">	
+		      {{ row }}
+		    </div>
+	    {% endif %}
+	  {% endfor %}
+	</section>
+</div>

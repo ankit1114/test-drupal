@@ -1,0 +1,92 @@
+
+<header>
+	<div class="top-header">
+		<div class="container">
+			<div class="th-row">
+				<div class="header-logo">
+					<a href="{{ url('<front>') }}">
+						<img src="{{ logopath }}" alt="">
+					</a>
+				</div>
+				<div class="th-btn">
+					<a href="tel:+45 423 445 99">{{ moorlands_contact_number }}</a>
+					<a href="mailto:info@domain.com">{{ moorlands_email_address }}</a>
+					<a href="/moorlands/contact-us" class="th-cnt-btn btn-round">CONTACT US</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="navigation">
+		<div class="container">
+			{% if page.header %}
+			  {{ page.header }}
+			{% endif %}  
+		</div>	
+	</div>
+</header>
+
+{% if page.content %}
+	{{ page.content }}
+{% endif %}	
+
+{% if page.get_in_touch %}
+	<section class="get-in-touch">
+		<div class="container">
+			<h3>{{ moorlands_get_in_touch }}</h3>
+			<div class="git-row">
+				{% for key, item in page.get_in_touch %}
+					{% if not (key starts with '#') %}
+					  <div class="git-col">
+		          		<article>
+					  		{{ item }}
+					  	</article>
+					  </div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+{% endif %}	
+
+{% if page.contact %}
+	{{ page.contact }}
+{% endif %}
+
+<footer>
+	<div class="container">
+		<div class="footer-row">
+			<div class="footer-nav">
+				<h6>SUB MENU</h6>
+				{% if page.footer %}
+				  {{ page.footer }}
+				{% endif %}
+			</div>
+			<div class="footer-logo">
+				<a href="{{ url('<front>') }}">
+					<img src="{{ moorlands_footer_logo_url }}" alt="">
+				</a>
+				<ul class="footer-social">
+					<li>
+						<a href="{{ moorlands_dribbble_link }}" class="fa fa-dribbble"></a>
+					</li>
+					<li>
+						<a href="{{ moorlands_facebook_link }}" class="fa fa-facebook"></a>
+					</li>
+					<li>
+						<a href="{{ moorlands_twitter_link }}" class="fa fa-twitter"></a>
+					</li>
+					<li>
+						<a href="{{ moorlands_apple_link }}" class="fa fa-apple"></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="copyright">
+		<div class="container">
+			<p>© WEBPRO {{ 'now' | date('Y') }} - All rights reserved.</p>
+		</div>
+	</div>
+</footer>
+

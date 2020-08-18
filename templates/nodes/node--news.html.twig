@@ -1,0 +1,19 @@
+<section class="news-details">
+	<div class="container">
+		<div class="news-d-row">
+			<div class="news-d-left">
+				<h3><span>{{ content.field_news_title }}</span></h3>
+				<h3>{{ content.field_news_detail_subtitle }}</h3>
+				<img src="{{ file_url(content.field_news_detail_image['#items'].0.entity.uri.value) }}" alt="">
+				{{ content.field_news_detail_description }}
+			</div>
+			<div class="news-d-right">
+				<div class="categories-sec">
+					{{ news_category_block }}
+				</div>
+				{{ related_news_block }}
+			</div>
+
+		</div>
+	</div>
+</section>

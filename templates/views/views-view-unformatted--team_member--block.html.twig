@@ -1,0 +1,26 @@
+<div class="clearfix">
+	<section class="about-section">
+		{% for row in rows %}
+		  <div class="about-row">
+		  	{{ row }}
+		  </div>
+		{% endfor %}
+	</section>
+</div>
+<!-- Modal start -->
+<div class="about-modal">
+	<div class="about-modal-body">
+		<button class="close-modal-btn">
+			<img src="{{ directory }}/images/close.png" alt="">
+		</button>
+		<figure>
+			<img src="{{ file_url(field_member_image.entity.fileuri) }}" alt="">
+		</figure>
+		<article>
+			<h6>{{ fields.title.content }}</h6>
+			<span>{{ fields.field_position.content }}</span>
+			<p>{{ fields.body.content }}</p>
+		</article>
+	</div>
+</div>
+<!-- Modal close -->
